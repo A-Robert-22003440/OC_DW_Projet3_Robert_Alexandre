@@ -186,3 +186,46 @@ footer nav ul {
 	margin: 2em
 }
 
+/* Filters (boutons au-dessus de la galerie) */
+.filters {
+	display: flex;
+	gap: 12px;
+	justify-content: center;
+	margin: 18px 0 28px;
+	flex-wrap: wrap;
+}
+
+.filter-btn {
+	border: 1px solid #1D6154;
+	color: #1D6154;
+	background: transparent;
+	padding: 8px 18px;
+	border-radius: 24px;
+	font-family: 'Work Sans';
+	font-weight: 600;
+	cursor: pointer;
+	font-size: 14px;
+	transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s;
+}
+
+.filter-btn:hover {
+	background: rgba(29,97,84,0.06);
+}
+
+.filter-btn--active {
+	background: #1D6154;
+	color: #fff;
+	box-shadow: 0 2px 6px rgba(29,97,84,0.18);
+}
+
+/* Small responsive tweaks */
+@media (max-width: 720px) {
+	.gallery { grid-template-columns: 1fr 1fr; }
+	.filter-btn { padding: 6px 14px; font-size: 13px; }
+}
+
+@media (max-width: 420px) {
+	.gallery { grid-template-columns: 1fr; }
+	.filters { gap: 8px; }
+}
+

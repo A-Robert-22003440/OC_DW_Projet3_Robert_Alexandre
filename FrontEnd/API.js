@@ -11,3 +11,17 @@ export async function fetchWorks() {
         return [];
     }
 }
+
+export async function fetchCategories() {
+    try {
+        const response = await fetch('http://localhost:5678/api/categories');
+        if (!response.ok) {
+            console.error('fetchCategories: réponse HTTP non OK', response.status);
+            return [];
+        }
+        return await response.json();
+    } catch (err) {
+        console.error('fetchCategories a échoué — vérifiez le backend / CORS', err);
+        return [];
+    }
+}
