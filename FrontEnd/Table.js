@@ -1,6 +1,5 @@
 import { fetchWorks, fetchCategories } from './API.js';
 
-// Initialization
 async function init() {
     const gallery = document.querySelector('.gallery');
     if (!gallery) return;
@@ -10,7 +9,7 @@ async function init() {
     console.log('categories', categories);
 
     const container = ensureFiltersContainer(gallery);
-    container._works = works; // cache works on container for quick access
+    container._works = works;
     renderFilterButtons(container, categories);
     renderGallery(gallery, works);
 }
@@ -22,7 +21,6 @@ function ensureFiltersContainer(gallery) {
         container.className = 'filters';
         gallery.parentNode.insertBefore(container, gallery);
     }
-    // attach listener once
     if (!container.dataset.listenerAttached) {
         container.addEventListener('click', (e) => {
             const btn = e.target.closest('button');
