@@ -1,4 +1,5 @@
-// Handle login form submission
+import { login } from './API.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.login-form');
   const emailInput = document.getElementById('email');
@@ -18,33 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try {
-      const resp = await fetch('http://localhost:5678/api/users/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
-
-      if (!resp.ok) {
-        if (resp.status === 404) {
-          errorEl.textContent = "Utilisateur introuvable.";
-        } else if (resp.status === 401) {
-          errorEl.textContent = "Identifiants incorrects.";
-        } else {
-          errorEl.textContent = "Erreur lors de la connexion. Réessayez.";
-        }
-        return;
-      }
-
-      const data = await resp.json();
-      // sauvegarder token + userId
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('userId', data.userId);
-
-      // redirection vers la page d'accueil
+        await login(email, password);
       window.location.href = 'index.html';
     } catch (err) {
       console.error(err);
-      errorEl.textContent = 'Impossible de contacter le serveur.';
+      if (err.status === 404) {
+        errorEl.textContent = 'Utilisateur introuvable.';
+      } else if (err.status === 401) {
+        errorEl.textContent = 'Identifiants incorrects.';
+      } else {
+        errorEl.textContent = 'Erreur lors de la connexion. Réessayez.';
+      }
     }
   });
 });

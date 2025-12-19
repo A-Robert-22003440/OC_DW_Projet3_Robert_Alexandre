@@ -218,7 +218,6 @@ footer nav ul {
 	box-shadow: 0 2px 6px rgba(29,97,84,0.18);
 }
 
-/* Small responsive tweaks */
 @media (max-width: 720px) {
 	.gallery { grid-template-columns: 1fr 1fr; }
 	.filter-btn { padding: 6px 14px; font-size: 13px; }
@@ -242,12 +241,12 @@ footer nav ul {
 	text-align: center;
 }
 
-/* masquer quand aucun message (évite la bande vide) */
+/* masquer quand aucun message */
 .login-error:empty {
 	display: none;
 }
 
-/* Login page styles - updated to match maquette */
+/* Login page styles  */
 .login-section {
 	background-color: #FCFAF5;
 	padding: 80px 0 120px;
