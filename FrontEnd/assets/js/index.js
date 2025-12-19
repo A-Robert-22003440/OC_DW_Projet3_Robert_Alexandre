@@ -1,4 +1,4 @@
-import { fetchWorks, fetchCategories } from './API.js';
+import { fetchWorks, fetchCategories } from './api.js';
 
 async function init() {
     const gallery = document.querySelector('.gallery');

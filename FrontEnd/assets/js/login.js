@@ -1,4 +1,4 @@
-import { login } from './API.js';
+import { login } from './api.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.login-form');
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (err) {
       console.error(err);
       if (err.status === 404) {
-        errorEl.textContent = 'Utilisateur introuvable.';
+        errorEl.textContent = 'Identifiants incorrects.';
       } else if (err.status === 401) {
         errorEl.textContent = 'Identifiants incorrects.';
       } else {
