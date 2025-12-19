@@ -16,7 +16,7 @@
     <nav>
         <ul>
             <li><a href="index.html">projets</a></li>
-            <li><a href="index.html#contact">contact</a></li>
+            <li>contact</li>
             <li><a href="login.html">login</a></li>
             <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
         </ul>
@@ -32,12 +32,15 @@
 
             <label for="password">Mot de passe</label>
             <input type="password" id="password" name="password" placeholder="">
+            <div id="loginError" class="login-error" aria-live="polite"></div>
 
             <button class="btn-login" type="submit">Se connecter</button>
             <a class="forgot" href="#">Mot de passe oublié</a>
         </form>
     </section>
 </main>
+
+<script src="./login.js" defer></script>
 
 <footer>
     <nav>
