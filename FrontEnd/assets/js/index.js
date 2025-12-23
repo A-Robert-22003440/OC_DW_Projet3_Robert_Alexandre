@@ -76,8 +76,9 @@ function renderFilterButtons(container, categories = []) {
 function showEditBanner() {
     const banner = document.getElementById('edit-banner');
     if (!banner) return;
-    banner.style.display = 'block';
+    banner.style.display = 'flex';
     banner.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('edit-mode');
 }
 
 function insertEditButton() {
@@ -85,13 +86,18 @@ function insertEditButton() {
     if (!portfolio) return;
     // éviter doublons
     if (document.querySelector('.edit-btn')) return;
+    const h2 = portfolio.querySelector('h2');
+    if (!h2) return;
+    // créer un wrapper pour le h2 et le bouton côte à côte
+    const wrapper = document.createElement('div');
+    wrapper.className = 'portfolio-header';
+    h2.parentNode.insertBefore(wrapper, h2);
+    wrapper.appendChild(h2);
     const btn = document.createElement('button');
     btn.className = 'edit-btn';
     btn.type = 'button';
-    btn.textContent = 'Modifier';
-    // insérer avant le h2 central
-    const h2 = portfolio.querySelector('h2');
-    if (h2 && h2.parentNode) h2.parentNode.insertBefore(btn, h2.nextSibling);
+    btn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i> modifier';
+    wrapper.appendChild(btn);
 }
 
 function setLogoutLink() {

@@ -230,24 +230,62 @@ footer nav ul {
 
 /* Bandeau mode édition en haut */
 .edit-banner {
-    display: none;
-	text-align: center;
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+	background: #000;
+	color: #fff;
 	padding: 10px 0;
+	height: 40px;
 	font-weight: 700;
 	font-family: 'Work Sans';
+	font-size: 15px;
+	letter-spacing: 0.02em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+
+/* Wrapper pour h2 + bouton */
+.portfolio-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 1em;
 }
 
 /* Bouton modifier visible en mode édition */
 .edit-btn {
-	display: inline-block;
-	padding: 8px 16px;
-	border-radius: 20px;
-	background: #1D6154;
-	color: #fff;
-	font-weight: 700;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 0;
+	background: transparent;
+	color: #111;
+	font-weight: 500;
 	border: none;
 	cursor: pointer;
-	margin-left: 12px;
+	font-size: 14px;
+	font-family: 'Work Sans';
+	white-space: nowrap;
+}
+
+.edit-btn:hover {
+	text-decoration: underline;
+}
+
+.edit-btn i {
+	margin-right: 6px;
+}
+
+/* Décaler le contenu quand le bandeau est fixé en haut */
+body.edit-mode {
+	padding-top: 40px;
 }
 
 /* utilitaire pour cacher des éléments */
