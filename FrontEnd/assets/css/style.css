@@ -228,6 +228,31 @@ footer nav ul {
 	.filters { gap: 8px; }
 }
 
+/* Bandeau mode édition en haut */
+.edit-banner {
+    display: none;
+	text-align: center;
+	padding: 10px 0;
+	font-weight: 700;
+	font-family: 'Work Sans';
+}
+
+/* Bouton modifier visible en mode édition */
+.edit-btn {
+	display: inline-block;
+	padding: 8px 16px;
+	border-radius: 20px;
+	background: #1D6154;
+	color: #fff;
+	font-weight: 700;
+	border: none;
+	cursor: pointer;
+	margin-left: 12px;
+}
+
+/* utilitaire pour cacher des éléments */
+.hidden { display: none !important; }
+
 /* message d'erreur login */
 .login-error{
 	width: 100%;

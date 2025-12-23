@@ -7,10 +7,25 @@ async function init() {
     const [works, categories] = await Promise.all([fetchWorks(), fetchCategories()]);
     console.log('works', works);
     console.log('categories', categories);
+    // vérifier si l'utilisateur est connecté (token présent)
+    const isLogged = !!localStorage.getItem('token');
 
-    const container = ensureFiltersContainer(gallery);
-    container._works = works;
-    renderFilterButtons(container, categories);
+    if (!isLogged) {
+        // afficher les filtres seulement si non connecté
+        const container = ensureFiltersContainer(gallery);
+        container._works = works;
+        renderFilterButtons(container, categories);
+    } else {
+        // masquer les filtres si présents
+        const existing = document.querySelector('.filters');
+        if (existing) existing.classList.add('hidden');
+        // afficher le bandeau d'édition et le bouton modifier
+        showEditBanner();
+        insertEditButton();
+        // transformer le lien login en logout
+        setLogoutLink();
+    }
+
     renderGallery(gallery, works);
 }
 
@@ -56,6 +71,42 @@ function renderFilterButtons(container, categories = []) {
     frag.appendChild(createFilterButton('Tous', 'all', true));
     categories.forEach(cat => frag.appendChild(createFilterButton(cat.name, String(cat.id))));
     container.appendChild(frag);
+}
+
+function showEditBanner() {
+    const banner = document.getElementById('edit-banner');
+    if (!banner) return;
+    banner.style.display = 'block';
+    banner.setAttribute('aria-hidden', 'false');
+}
+
+function insertEditButton() {
+    const portfolio = document.getElementById('portfolio');
+    if (!portfolio) return;
+    // éviter doublons
+    if (document.querySelector('.edit-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'edit-btn';
+    btn.type = 'button';
+    btn.textContent = 'Modifier';
+    // insérer avant le h2 central
+    const h2 = portfolio.querySelector('h2');
+    if (h2 && h2.parentNode) h2.parentNode.insertBefore(btn, h2.nextSibling);
+}
+
+function setLogoutLink() {
+    const navLink = document.querySelector('header nav a[href="login.html"]');
+    if (!navLink) return;
+    navLink.textContent = 'logout';
+    navLink.href = '#';
+    navLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        // supprimer token et userId
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+        // rediriger vers page d'accueil non connecté
+        window.location.href = 'index.html';
+    });
 }
 
 function createFigure(work) {
