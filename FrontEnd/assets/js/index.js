@@ -9,14 +9,11 @@ async function init() {
     const [works, categories] = await Promise.all([fetchWorks(), fetchCategories()]);
     console.log('works', works);
     console.log('categories', categories);
-    // vérifier si l'utilisateur est connecté (token présent)
     const isLogged = !!localStorage.getItem('token');
 
-    // stocker état global
     STATE.works = works;
     STATE.categories = categories;
 
-    // Afficher/masquer bandeau d'édition selon token
     const editBanner = document.getElementById('edit-banner');
     if (editBanner) {
         if (isLogged) {
@@ -31,17 +28,13 @@ async function init() {
     }
 
     if (!isLogged) {
-        // afficher les filtres seulement si non connecté
         const container = ensureFiltersContainer(gallery);
         container._works = works;
         renderFilterButtons(container, categories);
     } else {
-        // masquer les filtres si présents
         const existing = document.querySelector('.filters');
         if (existing) existing.classList.add('hidden');
-        // afficher le bouton modifier
         insertEditButton();
-        // transformer le lien login en logout
         setLogoutLink();
     }
 
@@ -103,11 +96,9 @@ function showEditBanner() {
 function insertEditButton() {
     const portfolio = document.getElementById('portfolio');
     if (!portfolio) return;
-    // éviter doublons
     if (document.querySelector('.edit-btn')) return;
     const h2 = portfolio.querySelector('h2');
     if (!h2) return;
-    // créer un wrapper pour le h2 et le bouton côte à côte
     const wrapper = document.createElement('div');
     wrapper.className = 'portfolio-header';
     h2.parentNode.insertBefore(wrapper, h2);
@@ -127,15 +118,13 @@ function setLogoutLink() {
     navLink.href = '#';
     navLink.addEventListener('click', (e) => {
         e.preventDefault();
-        // supprimer token et userId
         localStorage.removeItem('token');
         localStorage.removeItem('userId');
-        // rediriger vers page d'accueil non connecté
         window.location.href = 'index.html';
     });
 }
 
-/* ========= Modale ========= */
+/* Modale */
 function ensureModalRoot() {
     let overlay = document.getElementById('modalOverlay');
     if (!overlay) {

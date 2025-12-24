@@ -186,7 +186,7 @@ footer nav ul {
 	margin: 2em
 }
 
-/* Filters (boutons au-dessus de la galerie) */
+/* Filters */
 .filters {
 	display: flex;
 	gap: 12px;
@@ -228,7 +228,7 @@ footer nav ul {
 	.filters { gap: 8px; }
 }
 
-/* Bandeau mode édition en haut */
+/* Bandeau mode édition */
 .edit-banner {
 	display: none;
 	position: fixed;
@@ -250,7 +250,7 @@ footer nav ul {
 	gap: 10px;
 }
 
-/* Wrapper pour h2 + bouton */
+/* Position bouton modifier */
 .portfolio-header {
     display: flex;
     align-items: center;
@@ -283,12 +283,11 @@ footer nav ul {
 	margin-right: 6px;
 }
 
-/* Décaler le contenu quand le bandeau est fixé en haut */
 body.edit-mode {
 	padding-top: 40px;
 }
 
-/* ========= Modale ========= */
+/* Modale */
 .modal-overlay {
 	position: fixed;
 	inset: 0;
