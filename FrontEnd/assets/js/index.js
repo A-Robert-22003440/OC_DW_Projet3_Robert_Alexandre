@@ -16,6 +16,20 @@ async function init() {
     STATE.works = works;
     STATE.categories = categories;
 
+    // Afficher/masquer bandeau d'édition selon token
+    const editBanner = document.getElementById('edit-banner');
+    if (editBanner) {
+        if (isLogged) {
+            editBanner.style.display = 'flex';
+            editBanner.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('edit-mode');
+        } else {
+            editBanner.style.display = 'none';
+            editBanner.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('edit-mode');
+        }
+    }
+
     if (!isLogged) {
         // afficher les filtres seulement si non connecté
         const container = ensureFiltersContainer(gallery);
@@ -25,8 +39,7 @@ async function init() {
         // masquer les filtres si présents
         const existing = document.querySelector('.filters');
         if (existing) existing.classList.add('hidden');
-        // afficher le bandeau d'édition et le bouton modifier
-        showEditBanner();
+        // afficher le bouton modifier
         insertEditButton();
         // transformer le lien login en logout
         setLogoutLink();
