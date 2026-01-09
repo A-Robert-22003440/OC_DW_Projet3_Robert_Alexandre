@@ -262,7 +262,7 @@ footer nav ul {
 /* Position bouton modifier */
 .portfolio-header {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: center;
     gap: 12px;
     margin-bottom: 1em;
@@ -453,7 +453,8 @@ body.edit-mode {
 
 .btn-submit {
 	width: 200px;
-	margin: 0 auto;
+	margin: 30px auto 0;
+	display: block;
 }
 
 /* utilitaire pour cacher des éléments */
