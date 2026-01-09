@@ -260,6 +260,9 @@ function showFormView(ctx) {
             reader.onload = () => {
                 preview.src = reader.result;
                 preview.classList.remove('hidden');
+                // Masque le bouton et l'icône une fois l'image chargée
+                icon.style.display = 'none';
+                btnUpload.style.display = 'none';
             };
             reader.readAsDataURL(f);
         }
